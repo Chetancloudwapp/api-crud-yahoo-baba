@@ -61,4 +61,23 @@ const corsOptions = {
     credentials: true, // Allow credentials (cookies, authorization headers, etc.)
 }
 
+******** -------------------------- JWT AUTHENTICATION -------------------------- ***********
+
+NOTE :- Session mai and jwt mai difference yhh hai ki session ko hum server pr save krte hai and jwt ko hum client pr save krte hai.
+2). session page refresh hone pr expire ho jata hai and jwt page refresh hone pr expire nahi hota hai qk vo client ke localhost pr work krta hai
+
+// --------- How to work with Json web Token -------------- //
+
+1). npm install jsonwebtoken
+2). const jwt = require('jsonwebtoken');
+3). const SECRET_KEY = 'Chetan@1234';
+4). Generate JWT Token :- Token generate krne ke liye hume sign name ke method ka use krna hota hai.Iss token ko hum kahi bhi save krskte hai jaise ki local storage, session storage, cookies etc.
+
+const token = jwt.sign({ key: value }, SECRET_KEY, { expiresIn: '1h' });
+const token = jwt.sign({ userId: user._id }, SECRET_KEY, { expiresIn: '1h' });
+
+************** Verify JWT Token ***************
+
+jwt.verify(token, SECRET_KEY)
+
 */

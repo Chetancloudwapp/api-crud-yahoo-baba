@@ -1,7 +1,9 @@
 const express = require('express');
 const app = express();
 const StudentRoutes = require('./routes/students.routes');
+const UserRoutes = require('./routes/users.routes');
 const connectDB = require('./config/database');
+const auth = require('./middleware/auth');
 const { MulterError } = require('multer');
 const cors = require('cors');
 const path = require('path');
@@ -20,6 +22,10 @@ app.use(cors()); // use cors as a middleware
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads'))); // uploads file ka access dena chahte hai to uske liye hum static middleware ka use krenge and jab bhi user uploads folder ko search krega to root directory se use access mil jayga
 // routes
+app.use('/api/users', UserRoutes);
+
+app.use(auth);
+
 app.use('/api/students', StudentRoutes); // here StudentRoutes mai jitne bhi routes humne define kiye hai unsbse phle hume /api/students likhna padega jabhi vo route run honge
 
 /* ------------------- error handling middleware ------------------------ */
